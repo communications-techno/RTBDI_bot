@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryTrackingAutomation", "InventoryTrackingAutomation\InventoryTrackingAutomation.csproj", "{F842FE83-D383-4BE3-99CF-4AC66731440C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InventoryTrackingSetup", "InventoryTrackingSetup\InventoryTrackingSetup.vdproj", "{F6789D32-145F-3FB0-A94B-8E0487A8E586}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F842FE83-D383-4BE3-99CF-4AC66731440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F842FE83-D383-4BE3-99CF-4AC66731440C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F842FE83-D383-4BE3-99CF-4AC66731440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F842FE83-D383-4BE3-99CF-4AC66731440C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6789D32-145F-3FB0-A94B-8E0487A8E586}.Debug|Any CPU.ActiveCfg = Debug
+		{F6789D32-145F-3FB0-A94B-8E0487A8E586}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBD7ECB8-1667-43C8-A938-20956C290ECC}
+	EndGlobalSection
+EndGlobal
