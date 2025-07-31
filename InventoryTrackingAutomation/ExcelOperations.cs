@@ -64,6 +64,22 @@ namespace MerchantFeeAutomation
             return tupleMarket;
 
         }
+        public List<Tuple<string, string, string>> ExcelToTupleStoreName(string fileName, string workSheet)
+        {
+            List<Tuple<string, string, string>> tupleMarket = new List<Tuple<string, string, string>>();
+            using var wbook = new XLWorkbook(fileName);
+            var ws = wbook.Worksheet(workSheet);
+            var rows = ws.RangeUsed().RowsUsed();
+            int rowCount = 0;
+            foreach (var row in rows)
+            {
+                if (rowCount != 0)
+                    tupleMarket.Add(new Tuple<string, string, string>(row.Cell(1).Value.ToString(), row.Cell(2).Value.ToString(), row.Cell(3).Value.ToString()));
+                rowCount++;
+            }
+            return tupleMarket;
+
+        }
         public void insertDataInExcel(string fileName, string workSheet, DataTable DT, ProgressBar progressBar, Label label)
         {
             fileName = fileName + "_" + workSheet + "_"  + DateTime.Now.ToString("dd-MMM-yyyy HHmmss") + ".xlsx";
@@ -137,6 +153,5 @@ namespace MerchantFeeAutomation
             progressBar.Value = 100;
             label.Text = "Excel file " + fileName + " is ready..";
         }
-
     }
 }

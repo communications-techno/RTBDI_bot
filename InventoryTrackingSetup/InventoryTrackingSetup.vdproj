@@ -21,13 +21,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4B2801C715D94671BCBCC6D19FD51CCF"
+        "MsmKey" = "8:_55BB1990E21F4FE2A275961B7DB86D61"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_55BB1990E21F4FE2A275961B7DB86D61"
+        "MsmKey" = "8:_56233F6F73744E68B392459F555B3622"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -148,9 +148,9 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B2801C715D94671BCBCC6D19FD51CCF"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56233F6F73744E68B392459F555B3622"
             {
-            "SourcePath" = "8:C:\\Tracking System\\Conf.xlsx"
+            "SourcePath" = "8:..\\InventoryTrackingAutomation\\Conf.xlsx"
             "TargetName" = "8:Conf.xlsx"
             "Tag" = "8:"
             "Folder" = "8:_2063388D08E645C78616995884E5DE47"
@@ -225,7 +225,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:InventoryTrackingSetup"
         "ProductCode" = "8:{666933EE-68DC-48B7-993D-3972F09BC9F2}"
-        "PackageCode" = "8:{C8836DB4-8FD1-4DEA-B63A-EF1D4AC5EB4C}"
+        "PackageCode" = "8:{45AF3C06-03A5-4648-A41F-2F31917B0B16}"
         "UpgradeCode" = "8:{1138D708-8F34-4663-AE38-3FC0A6CE9663}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

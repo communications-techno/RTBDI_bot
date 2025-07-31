@@ -16,6 +16,7 @@ namespace InventoryTrackingAutomation
         CoreWebView2Environment environment;
         List<Tuple<string, string, string>> tupleMarket = new List<Tuple<string, string, string>>();
         List<Tuple<string, string, string>> tupleDeviceQty = new List<Tuple<string, string, string>>();
+        List<Tuple<string, string, string>> tupleStoreName = new List<Tuple<string, string, string>>();
         string Market = "";
         string SaveReportFolder = @"C:/";
         int Main_Page_Load_Time = 16;
@@ -33,6 +34,8 @@ namespace InventoryTrackingAutomation
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Conf.xlsx");
             tupleMarket = readMarketDate.ExcelToTupleMarket(filePath, "Credentials");
             tupleDeviceQty = readMarketDate.ExcelToTupleQty(filePath, "Devices");
+            tupleStoreName = readMarketDate.ExcelToTupleStoreName(filePath, "Market");
+
             foreach (Tuple<string, string, string> tuple in tupleMarket)
             {
                 comboBox1.Items.Add(tuple.Item1);
@@ -180,7 +183,10 @@ namespace InventoryTrackingAutomation
                     }
                     orderHistory.vendor = vendor;
                     orderHistory.shippingCondition = (await WV_DO.ExecuteScriptAsync(@"rows[3].cells[1].innerText;")).Replace("\"", "");
-                    orderHistory.deliveryAddress = (await WV_DO.ExecuteScriptAsync(@"rows[2].cells[1].innerText;")).Replace("\"", "");
+                    //orderHistory.deliveryAddress = (await WV_DO.ExecuteScriptAsync(@"rows[2].cells[1].innerText;")).Replace("\"", "");
+                    //orderHistory.referenceNumber.IndexOf("TECH");
+
+                    orderHistory.deliveryAddress = tupleStoreName.Where(x => x.Item1 == orderHistory.referenceNumber.Substring(orderHistory.referenceNumber.IndexOf("TECH"))).FirstOrDefault().Item2;
                     await WV_DO.ExecuteScriptAsync(@"var rowsOrderDetails = window.frames[0].frames[4].frames[1].document.getElementsByClassName('orderDetails-table')[1].rows;");
                     orderHistory.overallStatus = (await WV_DO.ExecuteScriptAsync(@"rowsOrderDetails[0].cells[1].innerText;")).Replace("\"", "");
                     orderHistory.deliveryStatus = (await WV_DO.ExecuteScriptAsync(@"rowsOrderDetails[1].cells[1].innerText;")).Replace("\"", "");
@@ -214,7 +220,11 @@ namespace InventoryTrackingAutomation
                                     orderDetails.description = await WV_DO.ExecuteScriptAsync($"rowsOrderItems[{k}].cells[5].innerText;");
                                     orderDetails.description = orderDetails.description.Replace("\"", "").Replace("\\n", "");
                                     //int quantityPerPack = GetQuantityPerPack(orderDetails.description);
-                                    int quantityPerPack = GetQuantityPerPack(orderDetails.product);
+                                    int quantityPerPack = 1;
+                                    if (orderDetails.quantity.Contains("EA"))
+                                        quantityPerPack = 1;
+                                    else if (orderDetails.quantity.Contains("PAC"))
+                                        quantityPerPack = GetQuantityPerPack(orderDetails.product);
                                     string[] prices = (await WV_DO.ExecuteScriptAsync($"rowsOrderItems[{k}].cells[6].innerText;")).Split("\\n");
                                     orderDetails.totalPrice = prices[0].Replace("\"", "");// await WV_DO.ExecuteScriptAsync($"rowsOrderItems[{k}].cells[6].innerText;");
                                     orderDetails.unitPrice = prices[1].Replace("\"", "");
