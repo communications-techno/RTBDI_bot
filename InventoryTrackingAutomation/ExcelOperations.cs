@@ -121,7 +121,7 @@ namespace MerchantFeeAutomation
                 ws.Cell("A" + rownum.ToString()).Value = row["Market"].ToString(); 
                 string[] address = row["deliveryAddress"].ToString().Split(",");
                 ws.Cell("B" + rownum.ToString()).Value = address[0];
-                ws.Cell("C" + rownum.ToString()).Value = row["referenceNumber"].ToString().Substring(5);
+                ws.Cell("C" + rownum.ToString()).Value = row["referenceNumber"].ToString().Substring(row["referenceNumber"].ToString().IndexOf("TECH"));
                 ws.Cell("D" + rownum.ToString()).Value = row["product"].ToString();
                 ws.Cell("E" + rownum.ToString()).Value = row["description"].ToString();
                 ws.Cell("F" + rownum.ToString()).Value = row["quantity"].ToString();

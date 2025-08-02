@@ -185,8 +185,15 @@ namespace InventoryTrackingAutomation
                     orderHistory.shippingCondition = (await WV_DO.ExecuteScriptAsync(@"rows[3].cells[1].innerText;")).Replace("\"", "");
                     //orderHistory.deliveryAddress = (await WV_DO.ExecuteScriptAsync(@"rows[2].cells[1].innerText;")).Replace("\"", "");
                     //orderHistory.referenceNumber.IndexOf("TECH");
-
-                    orderHistory.deliveryAddress = tupleStoreName.Where(x => x.Item1 == orderHistory.referenceNumber.Substring(orderHistory.referenceNumber.IndexOf("TECH"))).FirstOrDefault().Item2;
+                    try
+                    {
+                        orderHistory.deliveryAddress = tupleStoreName.Where(x => x.Item1 == orderHistory.referenceNumber.Substring(orderHistory.referenceNumber.IndexOf("TECH"))).FirstOrDefault().Item2;
+                    }
+                    catch
+                    {
+                        orderHistory.deliveryAddress = orderHistory.referenceNumber.Substring(orderHistory.referenceNumber.IndexOf("TECH")) + " was not found in Conf.xlsx file!!";
+                    }
+                    
                     await WV_DO.ExecuteScriptAsync(@"var rowsOrderDetails = window.frames[0].frames[4].frames[1].document.getElementsByClassName('orderDetails-table')[1].rows;");
                     orderHistory.overallStatus = (await WV_DO.ExecuteScriptAsync(@"rowsOrderDetails[0].cells[1].innerText;")).Replace("\"", "");
                     orderHistory.deliveryStatus = (await WV_DO.ExecuteScriptAsync(@"rowsOrderDetails[1].cells[1].innerText;")).Replace("\"", "");
